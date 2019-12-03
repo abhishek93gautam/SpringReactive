@@ -27,4 +27,10 @@ public class ItemRouter {
                             .andRoute(PUT(ItemConstants.ITEM_FUNCTIONAL_END_POINT_V1+"/{id}").and(accept(MediaType.APPLICATION_JSON)),
                                 itemHandler::updateItem);
     }
+
+    @Bean
+    public RouterFunction<ServerResponse> errorRoute(ItemHandler itemHandler){
+        return RouterFunctions.route(GET("fun/runtimeException").and(accept(MediaType.APPLICATION_JSON)),
+                itemHandler::itemsEx);
+    }
 }

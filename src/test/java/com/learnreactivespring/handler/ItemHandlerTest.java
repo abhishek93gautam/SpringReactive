@@ -120,4 +120,13 @@ public class ItemHandlerTest {
                 .jsonPath("$.price",129.99);
     }
 
+    @Test
+    public void runtimeException(){
+        webTestClient.get().uri("/fun/runtimeException")
+                        .exchange()
+                        .expectStatus().is5xxServerError()
+                        .expectBody()
+                        .jsonPath("$.message","Runtime exception occurred.");
+    }
+
 }

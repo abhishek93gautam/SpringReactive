@@ -171,5 +171,15 @@ public class ItemControllerTest {
 
     }
 
+    @Test
+    public void runtimeException(){
+
+        webTestClient.get().uri(ItemConstants.ITEM_END_POINT_V1+"/runtimeException")
+                            .exchange()
+                            .expectStatus().is5xxServerError()
+                            .expectBody(String.class)
+                            .isEqualTo("Runtime Exception Occurred.");
+    }
+
 
 }
